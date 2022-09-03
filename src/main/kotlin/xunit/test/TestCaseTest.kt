@@ -34,6 +34,7 @@ class TestCaseTest(name: String) : TestCase(name) {
         test.run(result)
 
         assertEquals("1 run, 1 failed", result.summary())
+        assertEquals("setUp tearDown", test.log)
     }
 
     @Test
