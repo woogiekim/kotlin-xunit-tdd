@@ -1,4 +1,4 @@
-package xunit
+package xunit.test
 
 import xunit.help.Assertions.assertEquals
 
