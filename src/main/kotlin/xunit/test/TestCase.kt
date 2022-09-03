@@ -4,7 +4,7 @@ import kotlin.reflect.full.declaredFunctions
 
 open class TestCase(
     private val name: String
-) {
+) : Test {
     var log: String = ""
         protected set
 
@@ -27,7 +27,7 @@ open class TestCase(
         this.log += " tearDown"
     }
 
-    open fun run(result: TestResult) {
+    override fun run(result: TestResult) {
         result.testStarted()
 
         setUp()
