@@ -6,20 +6,6 @@ class TestCaseTest(name: String) : TestCase(name) {
 
     lateinit var test: TestCase
 
-    companion object {
-        fun suite(): TestSuite {
-            val suite = TestSuite()
-
-            suite.add(TestCaseTest("testTemplateMethod"))
-            suite.add(TestCaseTest("testResult"))
-            suite.add(TestCaseTest("testFailedResult"))
-            suite.add(TestCaseTest("testFailedResultFormatting"))
-            suite.add(TestCaseTest("testSuite"))
-
-            return suite
-        }
-    }
-
     override fun setUp() {
         test = WasRun("testMethod")
     }
