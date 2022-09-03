@@ -2,6 +2,7 @@ package xunit.test
 
 import xunit.annotation.Test
 import xunit.help.Assertions.assertEquals
+import java.lang.AssertionError
 
 class TestCaseTest(name: String) : TestCase(name) {
 
@@ -12,7 +13,6 @@ class TestCaseTest(name: String) : TestCase(name) {
         val result = TestResult()
         test.run(result)
 
-        assertEquals(true, test.wasSetUp)
         assertEquals("setUp testMethod tearDown", test.log)
     }
 
@@ -57,5 +57,23 @@ class TestCaseTest(name: String) : TestCase(name) {
         suite.run(result)
 
         assertEquals("2 run, 1 failed", result.summary())
+    }
+
+    @Test
+    fun testCatchSetUpError() {
+        val suite = TestSuite()
+
+        val brokenSetUp = object : TestCase("testMethod") {
+            override fun setUp() {
+                throw RuntimeException()
+            }
+        }
+
+        suite.add(brokenSetUp)
+
+        val result = TestResult()
+        suite.run(result)
+
+        assertEquals("0 run, 1 failed", result.summary())
     }
 }
