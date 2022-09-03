@@ -1,9 +1,19 @@
 package xunit
 
 import xunit.test.TestCaseTest
+import xunit.test.TestResult
+import xunit.test.TestSuite
 
 fun main() {
-    TestCaseTest("testTemplateMethod").run()
-    TestCaseTest("testResult").run()
-    TestCaseTest("testFailedResult").run()
+    val suite = TestSuite()
+
+    suite.add(TestCaseTest("testTemplateMethod"))
+    suite.add(TestCaseTest("testResult"))
+    suite.add(TestCaseTest("testFailedResult"))
+    suite.add(TestCaseTest("testSuite"))
+
+    val result = TestResult()
+    suite.run(result)
+
+    println(result.summary())
 }
