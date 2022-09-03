@@ -2,7 +2,6 @@ package xunit.test
 
 import xunit.annotation.Test
 import xunit.help.Assertions.assertEquals
-import java.lang.AssertionError
 
 class TestCaseTest(name: String) : TestCase(name) {
 

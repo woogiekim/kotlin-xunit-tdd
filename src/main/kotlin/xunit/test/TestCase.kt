@@ -1,6 +1,5 @@
 package xunit.test
 
-import kotlin.Exception
 import kotlin.reflect.full.declaredFunctions
 
 open class TestCase(
