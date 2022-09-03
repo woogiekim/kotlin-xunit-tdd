@@ -1,5 +1,6 @@
 package xunit.test
 
+import kotlin.AssertionError
 import kotlin.reflect.full.declaredFunctions
 
 open class TestCase(
@@ -39,7 +40,7 @@ open class TestCase(
 
             function.call(this)
         } catch (e: Exception) {
-            throw RuntimeException(e)
+            result.testFailed()
         } finally {
             tearDown()
         }

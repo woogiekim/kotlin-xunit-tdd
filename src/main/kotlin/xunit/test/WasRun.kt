@@ -6,4 +6,8 @@ class WasRun(name: String) : TestCase(name) {
         this.wasRun = true
         this.log += " testMethod"
     }
+
+    fun testBrokenMethod() {
+        throw AssertionError()
+    }
 }
