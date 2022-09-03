@@ -12,5 +12,5 @@
 - [x] 수집된 결과를 출력하기
 - [x] WasRun에 로그 문자열 남기기
 - [x] 실패한 테스트 보고하기
-- [ ] setUp 에러를 잡아서 보고하기
-- [ ] TestCase 클래스에서 TestSuite 생성하기
+- [] setUp 에러를 잡아서 보고하기
+- [x] TestCase 클래스로 TestSuite 생성하기
