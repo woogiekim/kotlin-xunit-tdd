@@ -16,4 +16,10 @@ class TestCaseTest(name: String) : TestCase(name) {
         assertEquals(true, test.wasSetUp)
         assertEquals("setUp testMethod tearDown", test.log)
     }
+
+    fun testResult() {
+        val result: TestResult = test.run()
+
+        assertEquals("1 run, 0 failed", result.summary())
+    }
 }

@@ -27,7 +27,11 @@ open class TestCase(
         this.log += " tearDown"
     }
 
-    open fun run() {
+    open fun run(): TestResult {
+        val result = TestResult()
+
+        result.testStarted()
+
         setUp()
 
         try {
@@ -39,5 +43,7 @@ open class TestCase(
         } finally {
             tearDown()
         }
+
+        return result
     }
 }
