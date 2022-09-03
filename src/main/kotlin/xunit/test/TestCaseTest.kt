@@ -1,16 +1,14 @@
 package xunit.test
 
+import xunit.annotation.Test
 import xunit.help.Assertions.assertEquals
 
 class TestCaseTest(name: String) : TestCase(name) {
 
-    lateinit var test: TestCase
-
-    override fun setUp() {
-        test = WasRun("testMethod")
-    }
-
+    @Test
     fun testTemplateMethod() {
+        val test = WasRun("testMethod")
+
         val result = TestResult()
         test.run(result)
 
@@ -18,13 +16,17 @@ class TestCaseTest(name: String) : TestCase(name) {
         assertEquals("setUp testMethod tearDown", test.log)
     }
 
+    @Test
     fun testResult() {
+        val test = WasRun("testMethod")
+
         val result = TestResult()
         test.run(result)
 
         assertEquals("1 run, 0 failed", result.summary())
     }
 
+    @Test
     fun testFailedResult() {
         val test = WasRun("testBrokenMethod")
 
@@ -34,6 +36,7 @@ class TestCaseTest(name: String) : TestCase(name) {
         assertEquals("1 run, 1 failed", result.summary())
     }
 
+    @Test
     fun testFailedResultFormatting() {
         val result = TestResult()
 
@@ -43,6 +46,7 @@ class TestCaseTest(name: String) : TestCase(name) {
         assertEquals("1 run, 1 failed", result.summary())
     }
 
+    @Test
     fun testSuite() {
         val suite = TestSuite()
 
@@ -54,6 +58,4 @@ class TestCaseTest(name: String) : TestCase(name) {
 
         assertEquals("2 run, 1 failed", result.summary())
     }
-
-
 }

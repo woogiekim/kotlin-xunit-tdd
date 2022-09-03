@@ -2,8 +2,8 @@ package xunit.test
 
 import kotlin.reflect.KClass
 import kotlin.reflect.full.declaredFunctions
+import kotlin.reflect.full.findAnnotations
 import kotlin.reflect.full.primaryConstructor
-import kotlin.reflect.jvm.javaConstructor
 
 class TestSuite : Test {
 
@@ -21,7 +21,7 @@ class TestSuite : Test {
         fun suite(testClass: KClass<out Test>): TestSuite {
             return TestSuite().apply {
                 testClass.declaredFunctions
-                    .filter { it.name.startsWith("test") }
+                    .filter { it.findAnnotations(xunit.annotation.Test::class).firstOrNull() != null }
                     .forEach { add(testClass.primaryConstructor!!.call(it.name)) }
             }
         }
