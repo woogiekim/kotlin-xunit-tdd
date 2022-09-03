@@ -1,6 +1,5 @@
 package xunit.test
 
-import kotlin.AssertionError
 import kotlin.reflect.full.declaredFunctions
 
 open class TestCase(
