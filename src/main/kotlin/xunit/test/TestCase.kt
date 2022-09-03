@@ -5,21 +5,39 @@ import kotlin.reflect.full.declaredFunctions
 open class TestCase(
     private val name: String
 ) {
+    var log: String = ""
+        protected set
+
     var wasRun: Boolean = false
         protected set
 
     var wasSetUp: Boolean = false
         protected set
 
+    var wasTearDown: Boolean = false
+        protected set
+
     open fun setUp() {
         this.wasSetUp = true
+        this.log = "setUp"
+    }
+
+    open fun tearDown() {
+        this.wasTearDown = true
+        this.log += " tearDown"
     }
 
     open fun run() {
         setUp()
 
-        val function = this::class.declaredFunctions.first { it.name == this.name }
+        try {
+            val function = this::class.declaredFunctions.first { it.name == this.name }
 
-        function.call(this)
+            function.call(this)
+        } catch (e: Exception) {
+            throw RuntimeException(e)
+        } finally {
+            tearDown()
+        }
     }
 }

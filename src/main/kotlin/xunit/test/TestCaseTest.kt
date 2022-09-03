@@ -10,17 +10,10 @@ class TestCaseTest(name: String) : TestCase(name) {
         test = WasRun("testMethod")
     }
 
-    fun testRunning() {
-        assertEquals(test.wasRun, false)
-
+    fun testTemplateMethod() {
         test.run()
 
-        assertEquals(test.wasRun, true)
-    }
-
-    fun testSetUp() {
-        test.run()
-
-        assertEquals(test.wasSetUp, true)
+        assertEquals(true, test.wasSetUp)
+        assertEquals("setUp testMethod tearDown", test.log)
     }
 }
